@@ -1,19 +1,16 @@
 package com.segurosx.models;
 
-public class SeguroTarjeta {
-
-    private Integer numero;
-    
-    private String bancoTarjeta;
-
-    private String nivelRiesgo = "NINGUNO";
+public class SeguroTarjeta extends Seguro implements INivelRiesgo, ICobertura {
+  
 
     public SeguroTarjeta(String bancoTarjeta)    {
 
+        super();
         this.bancoTarjeta = bancoTarjeta;
     }
 
-    public void cacularRiesgo()   {
+    @Override
+    public void calcularRiesgo()   {
 
         if (this.bancoTarjeta.equals("AZTECA")) {
             this.nivelRiesgo = "ALTO";
@@ -23,15 +20,15 @@ public class SeguroTarjeta {
         } 
     }
 
-    public String getNivelRiesgo()  {
-        return this.nivelRiesgo;
+    @Override
+    public String getDetalleSeguro() {
+        
+        return "Seg. Tarjeta Numero: " + this.numero + " con riesgo: " + this.nivelRiesgo;
     }
 
-    public Integer getNumero() {
-        return numero;
-    }
+    @Override
+    public void calculaCobertura() {
+        // TODO Auto-generated method stub
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
     }
 }

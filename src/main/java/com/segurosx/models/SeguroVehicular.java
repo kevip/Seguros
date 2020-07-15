@@ -1,23 +1,23 @@
 package com.segurosx.models;
 
-import java.util.Random;
+import com.segurosx.models.patterns.CoberturaBasicaVehicular;
+import com.segurosx.models.patterns.CoberturaPorChoqueDecorator;
+import com.segurosx.models.patterns.CoberturaTodoRiesgoDecorator;
 
-public class SeguroVehicular {
+public class SeguroVehicular extends Seguro implements INivelRiesgo {
 
-    private Integer numero;
+    private ICobertura cobertura;
     
-    private String marca;
-    private String modelo;
-    private String nivelRiesgo = "NINGUNO";
-
     public SeguroVehicular(String marca, String modelo)    {
 
-        this.numero = new Integer(new Random().nextInt()); 
+        super();
         this.marca = marca;
         this.modelo = modelo;
+
     }
 
-    public void cacularRiesgo()   {
+    @Override
+    public void calcularRiesgo() {
 
         if (this.marca.equals("Toyota") && this.modelo.equals("Yaris")) {
             this.nivelRiesgo = "ALTO";
@@ -25,22 +25,20 @@ public class SeguroVehicular {
         else {
             this.nivelRiesgo = "BAJO";
         } 
+
     }
 
-    public String getNivelRiesgo()  {
-        return this.nivelRiesgo;
-    }
-
-    public Integer getNumero() {
-        return numero;
-    }
-
-    public void setNumber(Integer numero) {
-        this.numero = numero;
-    }
-
+    @Override
     public String getDetalleSeguro()    {
 
         return "Seg. Vehicular Numero: " + this.numero + " con riesgo: " + this.nivelRiesgo;
-    }    
+    }
+
+    public void calcularCobeturaVehicular() {
+
+        this.cobertura = new CoberturaTodoRiesgoDecorator(
+                            new CoberturaPorChoqueDecorator(
+                                new CoberturaBasicaVehicular()));
+        cobertura.calculaCobertura();        
+    }
 }

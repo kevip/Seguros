@@ -1,22 +1,31 @@
 package com.segurosx.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente {
     
     private String nombre;
-    private SeguroVehicular seguroVehicular;
+    private List<Seguro> seguros;
 
     public Cliente(String nombre)   {
 
         this.nombre = nombre;
+        this.seguros = new ArrayList<Seguro>();
     }
 
-    public void setCompraSeguroVehicular(SeguroVehicular seguroVehicular) {
+    public void setCompraSeguro(Seguro seguro) {
 
-        this.seguroVehicular = seguroVehicular;
+        this.seguros.add( seguro );
     }
 
     public void getListaSeguroCliente()    {
 
-        System.out.println("Nombre: " + this.nombre + " - Seguro: " + this.seguroVehicular.getDetalleSeguro());
+        System.out.println("Nombre: " + this.nombre );
+        for (Seguro seguro : seguros )  {
+
+            System.out.println( "Seguro: " + seguro.getDetalleSeguro());
+        }
+        
     }
 }
