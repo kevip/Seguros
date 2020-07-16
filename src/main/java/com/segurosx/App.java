@@ -7,6 +7,7 @@ import com.segurosx.models.SeguroTarjeta;
 import com.segurosx.models.SeguroVehicular;
 import com.segurosx.models.patterns.PolizaAdapter;
 //import com.segurosx.models.patterns.PolizaAdapter2;
+import com.segurosx.models.patterns.PolizaAdapter2;
 
 /**
  * HRCS
@@ -38,6 +39,8 @@ public class App
         IExportable exportable = new PolizaAdapter(seguro2.getPoliza());
         System.out.println( exportable.aXML() +"\n");
 
+        IExportable exportable2 = new PolizaAdapter2(76656, "Juan Perez", "Juan Pablo");
+        System.out.println( exportable2.aXML() +"\n");
 
 
    }

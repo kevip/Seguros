@@ -37,8 +37,7 @@ public class SeguroVehicular extends Seguro implements INivelRiesgo {
     public void calcularCobeturaVehicular() {
 
         this.cobertura = new CoberturaTodoRiesgoDecorator(
-                            new CoberturaPorChoqueDecorator(
-                                new CoberturaBasicaVehicular()));
+                            new CoberturaBasicaVehicular());
         cobertura.calculaCobertura();        
     }
 }
