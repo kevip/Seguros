@@ -5,8 +5,8 @@ import com.segurosx.models.Poliza;
 
 public class PolizaAdapter2 extends Poliza implements IExportable {
 
-    public PolizaAdapter2(Integer numero, String nombresAsegurado, String nombresTomador) {
-        super(numero, nombresAsegurado, nombresTomador);
+    public PolizaAdapter2(Integer numero, String nombresAsegurado, String nombresTomador, Double suma) {
+        super(numero, nombresAsegurado, nombresTomador, suma);
     }
 
     @Override

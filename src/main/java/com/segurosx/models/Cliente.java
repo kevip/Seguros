@@ -1,5 +1,6 @@
 package com.segurosx.models;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class Cliente {
     }
 
     public void setCompraSeguro(Seguro seguro) {
+        // set contratante, observers
+        seguro.setCliente(this);
 
         this.seguros.add( seguro );
     }
@@ -27,5 +30,11 @@ public class Cliente {
             System.out.println( "Seguro: " + seguro.getDetalleSeguro());
         }
         
+    }
+
+    public void notifyCliente(Seguro seguro) throws AWTException {
+        System.out.println(seguro.getPoliza().armarSalidaTexto());
+        Notificacion notificacion = new Notificacion("Cambio de suma asegurada", "Poliza - suma: " + seguro.getPoliza().getSumaAsegurada());
+        notificacion.displayTray();
     }
 }

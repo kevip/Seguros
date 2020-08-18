@@ -9,13 +9,15 @@ public class Poliza {
     private String nombresAsegurado;
     private String nombresTomador;
     private List<String> nombresBeneficiarios;
+    private Double sumaAsegurada;
 
-    public Poliza(Integer numero, String nombresAsegurado, String nombresTomador)   {
+    public Poliza(Integer numero, String nombresAsegurado, String nombresTomador, Double suma)   {
 
         this.numero = numero;
         this.nombresAsegurado = nombresAsegurado;
         this.nombresTomador = nombresTomador;
         this.nombresBeneficiarios = new ArrayList<String>();
+        this.sumaAsegurada = suma;
     }
     
     public Integer getNumero() {
@@ -42,6 +44,14 @@ public class Poliza {
         this.nombresTomador = nombresTomador;
     }
 
+    public Double getSumaAsegurada() {
+        return sumaAsegurada;
+    }
+
+    public void setSumaAsegurada(Double sumaAsegurada) {
+        this.sumaAsegurada = sumaAsegurada;
+    }
+
     public String armarSalidaTexto()    {
 
         StringBuffer salida = new StringBuffer();
@@ -50,7 +60,8 @@ public class Poliza {
         salida.append("Poliza numero: [" + this.numero + "]\n");
         salida.append("Nombres Asegurado: [" + this.nombresAsegurado + "]\n");
         salida.append("Nombres Tomador: [" + this.nombresTomador + "]\n");
-        salida.append("-------------------------\n");   
+        salida.append("Suma Asegurada: $ " + this.sumaAsegurada + "\n");
+        salida.append("-------------------------\n");
 
         return salida.toString();
     }

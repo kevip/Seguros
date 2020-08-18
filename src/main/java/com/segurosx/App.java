@@ -9,14 +9,15 @@ import com.segurosx.models.patterns.PolizaAdapter;
 //import com.segurosx.models.patterns.PolizaAdapter2;
 import com.segurosx.models.patterns.PolizaAdapter2;
 
+import java.awt.*;
+
 /**
  * HRCS
  *
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws AWTException {
 
         Cliente cliente = new Cliente("Juan Perez");
         
@@ -29,9 +30,11 @@ public class App
 
         SeguroTarjeta seguro2 = new SeguroTarjeta("BCP");
         seguro2.calcularRiesgo();
-        seguro2.setPoliza(new Poliza(122122, "Juan Pablo", "Juan Perez"));        
+        seguro2.setPoliza(new Poliza(122122, "Juan Pablo", "Juan Perez", 12.4));
         cliente.setCompraSeguro(seguro2);
         System.out.println( seguro2.getDetalleSeguro() );
+
+        seguro2.setSumaAsegurada(34.5);
 
         System.out.println();
         seguro2.getPoliza().imprimir();
@@ -39,7 +42,7 @@ public class App
         IExportable exportable = new PolizaAdapter(seguro2.getPoliza());
         System.out.println( exportable.aXML() +"\n");
 
-        IExportable exportable2 = new PolizaAdapter2(76656, "Juan Perez", "Juan Pablo");
+        IExportable exportable2 = new PolizaAdapter2(76656, "Juan Perez", "Juan Pablo", 14.6);
         System.out.println( exportable2.aXML() +"\n");
 
 
