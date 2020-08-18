@@ -15,6 +15,10 @@ public class Cliente {
         this.seguros = new ArrayList<Seguro>();
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+
     public void setCompraSeguro(Seguro seguro) {
         // set contratante, observers
         seguro.setCliente(this);

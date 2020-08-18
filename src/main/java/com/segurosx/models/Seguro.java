@@ -16,6 +16,7 @@ public abstract class Seguro {
 
     public Seguro() {
         this.numero = new Integer(new Random().nextInt());
+        this.certificado = new Certificado();
     }
 
     public Certificado getCertificado() {

@@ -1,10 +1,7 @@
 package com.segurosx;
 
-import com.segurosx.models.Cliente;
-import com.segurosx.models.IExportable;
-import com.segurosx.models.Poliza;
-import com.segurosx.models.SeguroTarjeta;
-import com.segurosx.models.SeguroVehicular;
+import com.segurosx.models.*;
+import com.segurosx.models.patterns.CorreoMediator;
 import com.segurosx.models.patterns.PolizaAdapter;
 //import com.segurosx.models.patterns.PolizaAdapter2;
 import com.segurosx.models.patterns.PolizaAdapter2;
@@ -35,6 +32,9 @@ public class App
         System.out.println( seguro2.getDetalleSeguro() );
 
         seguro2.setSumaAsegurada(34.5);
+        CorreoMediator contratanteNotificacion = new ContratanteCorreoMediator(seguro2);
+        contratanteNotificacion.sendCorreo();
+
 
         System.out.println();
         seguro2.getPoliza().imprimir();
