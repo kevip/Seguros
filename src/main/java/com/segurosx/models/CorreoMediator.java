@@ -2,7 +2,6 @@ package com.segurosx.models;
 
 import com.segurosx.models.patterns.ICorreoMediator;
 
-import java.awt.*;
 
 public class CorreoMediator implements ICorreoMediator {
 

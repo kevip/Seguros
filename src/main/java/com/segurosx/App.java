@@ -36,6 +36,7 @@ public class App
 
 
         seguro2.addObserver(cliente);
+        seguro2.addObserver(asegurado);
         seguro2.setSumaAsegurada(34.5);
 
 
