@@ -4,41 +4,57 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
-    
-    private String nombre;
-    private List<Seguro> seguros;
+import com.segurosx.models.patterns.IClienteObserver;
 
-    public Cliente(String nombre)   {
+public class Cliente implements IClienteObserver {
+    
+    private final String nombre;
+    private final List<Seguro> seguros;
+    protected CorreoMediator correoMediator;
+
+    public Cliente(final String nombre) {
 
         this.nombre = nombre;
         this.seguros = new ArrayList<Seguro>();
     }
 
-    public String getNombre(){
+    public Cliente(final String nombre, final CorreoMediator correoMediator) {
+
+        this.nombre = nombre;
+        this.correoMediator = correoMediator;
+        this.seguros = new ArrayList<Seguro>();
+    }
+
+    public String getNombre() {
         return nombre;
     }
 
-    public void setCompraSeguro(Seguro seguro) {
+    public void setCompraSeguro(final Seguro seguro) {
         // set contratante, observers
         seguro.setCliente(this);
 
-        this.seguros.add( seguro );
+        this.seguros.add(seguro);
     }
 
-    public void getListaSeguroCliente()    {
+    public void getListaSeguroCliente() {
 
-        System.out.println("Nombre: " + this.nombre );
-        for (Seguro seguro : seguros )  {
+        System.out.println("Nombre: " + this.nombre);
+        for (final Seguro seguro : seguros) {
 
-            System.out.println( "Seguro: " + seguro.getDetalleSeguro());
+            System.out.println("Seguro: " + seguro.getDetalleSeguro());
+        }
+
+    }
+
+    @Override
+    public void notifica()   {
+
+        try {
+            System.out.println("Notificando al cliente " + this.nombre);
+        }
+        catch(Throwable t) {
+            System.out.println("Notificacion con error" + t.getMessage() );
         }
         
-    }
-
-    public void notifyCliente(Seguro seguro) throws AWTException {
-        System.out.println(seguro.getPoliza().armarSalidaTexto());
-        Notificacion notificacion = new Notificacion("Cambio de suma asegurada", "Poliza - suma: " + seguro.getPoliza().getSumaAsegurada());
-        notificacion.displayTray();
     }
 }
